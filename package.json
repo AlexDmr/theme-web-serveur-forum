@@ -1,0 +1,16 @@
+{
+  "name": "cors-serveur-alpha",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "compile": "node ./node_modules/typescript/bin/tsc",
+    "start": "npm run compile && node server.js"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
+}
