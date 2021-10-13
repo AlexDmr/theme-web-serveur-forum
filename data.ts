@@ -34,9 +34,9 @@ export const rootMessage: MESSAGE = {
 
 let idM = 0;
 
-createMessage("toto", "bonjour à tous");
+createMessage("toto", "Bonjour à tous");
 createMessage("titi", "Salut toto", 1);
-createMessage("titi", "Qui a des question ?");
+createMessage("titi", "Qui a des questions ?");
 
 export function createMessage(author: string, data: string, parentId?: number): MESSAGE | undefined {
     const m: MESSAGE = {author, data, id: ++idM, responses: new ArrayMessage()};

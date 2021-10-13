@@ -27,9 +27,9 @@ exports.rootMessage = {
     data: ""
 };
 let idM = 0;
-createMessage("toto", "bonjour à tous");
+createMessage("toto", "Bonjour à tous");
 createMessage("titi", "Salut toto", 1);
-createMessage("titi", "Qui a des question ?");
+createMessage("titi", "Qui a des questions ?");
 function createMessage(author, data, parentId) {
     const m = { author, data, id: ++idM, responses: new ArrayMessage() };
     if (typeof parentId === 'number') {

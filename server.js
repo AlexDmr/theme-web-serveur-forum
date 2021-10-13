@@ -13,13 +13,13 @@ const port = 8080;
 app.listen(port, () => console.log(`Le serveur est démarré sur le port ${port} !`));
 app.get("/", (req, res) => {
     if (req.headers['if-none-match'] === (0, data_1.lastModified)()) {
-        console.log("On renvoie une réponse 304, sans corps.");
+        console.log("GET / : On renvoie une réponse 304, sans corps.");
         res.setHeader('Cache-Control', `max-age=${60 * 60 * 24}`)
             .setHeader('ETag', (0, data_1.lastModified)())
             .status(304).end();
     }
     else {
-        console.log("On regénère le HTML");
+        console.log("GET / : On regénère le HTML");
         const html = (0, data_1.toHTML)();
         res.setHeader('ETag', (0, data_1.lastModified)())
             .setHeader('Cache-Control', `max-age=${60 * 60 * 24}`)
