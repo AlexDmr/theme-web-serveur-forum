@@ -9,6 +9,9 @@ export function lastModified(): string {return rootMessage.responses.lastModifie
 export class ArrayMessage extends Array<MESSAGE> {
     private static _lastModified = Date.now().toString();
     get lastModified(): string {return ArrayMessage._lastModified;}
+    forceUpdate() {
+        ArrayMessage._lastModified = Date.now().toString();
+    }
 
     constructor(...L: MESSAGE[]) {
         super(...L);
@@ -16,11 +19,11 @@ export class ArrayMessage extends Array<MESSAGE> {
     override splice(start: number, deleteCount?: number): MESSAGE[]
     override splice(start: number, deleteCount: number, ...L: MESSAGE[]): MESSAGE[] {
         console.log("splice", this);
-        ArrayMessage._lastModified = Date.now().toString();
+        this.forceUpdate();
         return super.splice(start, deleteCount, ...L);
     }
     override push(...L: MESSAGE[]) { 
-        ArrayMessage._lastModified = Date.now().toString();
+        this.forceUpdate();
         return super.push(...L);
     }
 }
@@ -76,6 +79,7 @@ export function updateMessage(id: number, data: string): MESSAGE | undefined {
     const m = getMessage(id);
     if (m) {
         m.data = data;
+        rootMessage.responses.forceUpdate();
         return m;
     } else {
         return undefined;

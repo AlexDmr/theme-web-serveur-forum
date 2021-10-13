@@ -8,6 +8,7 @@ export declare function lastModified(): string;
 export declare class ArrayMessage extends Array<MESSAGE> {
     private static _lastModified;
     get lastModified(): string;
+    forceUpdate(): void;
     constructor(...L: MESSAGE[]);
     splice(start: number, deleteCount?: number): MESSAGE[];
     push(...L: MESSAGE[]): number;

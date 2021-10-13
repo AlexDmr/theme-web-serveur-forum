@@ -1,5 +1,5 @@
 import express from "express";
-import { createMessage, deleteMessage, getMessage, lastModified, toHTML } from './data';
+import { createMessage, deleteMessage, getMessage, lastModified, toHTML, updateMessage } from './data';
 // const express = require('express');
 
 const app = express();
@@ -90,9 +90,8 @@ app.put("/message", (req, res) => {
         return res  .status(400)
                     .send( `Il manque dans le corp du message la clef id ou bien sa valeur est ""` );
     }
-    const m = getMessage( +id );
+    const m = updateMessage( +id, data );
     if (m) {
-        m.data = data;
         return res  .send( JSON.stringify(m) );
     } else {
         return res  .status(400)

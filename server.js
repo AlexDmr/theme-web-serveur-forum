@@ -91,9 +91,8 @@ app.put("/message", (req, res) => {
         return res.status(400)
             .send(`Il manque dans le corp du message la clef id ou bien sa valeur est ""`);
     }
-    const m = (0, data_1.getMessage)(+id);
+    const m = (0, data_1.updateMessage)(+id, data);
     if (m) {
-        m.data = data;
         return res.send(JSON.stringify(m));
     }
     else {

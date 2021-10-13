@@ -8,6 +8,11 @@ class ArrayMessage extends Array {
         super(...L);
     }
     get lastModified() { return ArrayMessage._lastModified; }
+    forceUpdate() {
+        console.log("_lastModified was", ArrayMessage._lastModified);
+        ArrayMessage._lastModified = Date.now().toString();
+        console.log("_lastModified  is", ArrayMessage._lastModified);
+    }
     splice(start, deleteCount, ...L) {
         console.log("splice", this);
         ArrayMessage._lastModified = Date.now().toString();
@@ -70,6 +75,7 @@ function updateMessage(id, data) {
     const m = getMessage(id);
     if (m) {
         m.data = data;
+        exports.rootMessage.responses.forceUpdate();
         return m;
     }
     else {
